@@ -24,7 +24,8 @@ namespace DataLayer.Entities
         /// </summary>
         public int Number { get; set; }
 
-        
+
+        public DateTime SuggestedTime { get; set; }
 
         /// <summary>
         /// نوع زیر پروژه مورد نظر

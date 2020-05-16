@@ -239,7 +239,7 @@ namespace Service.Repos.ProjectAndSubProject
             {
                 model.Add(new CalenderDTO {
 
-                    start = item.SuggestedTime.ToString("yyyy-MM-dd"),
+                   // start = item.SuggestedTime.ToString("yyyy-MM-dd"),
                     title = item.Title + "(" + item.Project.Title + ")",
                     description = item.SubProjectType.ToDisplay() + "\n" + item.Number
 

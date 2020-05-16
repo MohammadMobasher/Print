@@ -42,6 +42,8 @@
 
 
   <ItemGroup>
+    <Folder Include="Areas\Keywords\Data\" />
+    <Folder Include="Areas\Keywords\Models\" />
     <Folder Include="wwwroot\FileIO\" />
     <Folder Include="wwwroot\Plugins\jstree\themes\default\" />
     <Folder Include="wwwroot\Uploads\BookOrSeet\" />

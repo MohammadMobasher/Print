@@ -46,6 +46,7 @@ namespace Service
 
         
         public DbSet<SlideShow> SlideShow { get; set; }
+        public DbSet<Keywords> Keywords { get; set; }
 
         
         #endregion

@@ -38,6 +38,8 @@ namespace ElevatorAdmin.ViewComponents
             items.Add(new SidebarViewModel { Area = "Employee", Controller = "ManageTaskCovering", Action = "Index", Title = "Tasks", Icon = "mdi mdi-wallet-travel" });
             items.Add(new SidebarViewModel { Area = "Employee", Controller = "ManageTaskPrinting", Action = "Index", Title = "Tasks", Icon = "mdi mdi-wallet-travel" });
             items.Add(new SidebarViewModel { Area = "Employee", Controller = "ManageTaskBinding", Action = "Index", Title = "Tasks", Icon = "mdi mdi-wallet-travel" });
+            items.Add(new SidebarViewModel { Area = "Keywords", Controller = "ManageKeywords", Action = "Index", Title = "Keywords", Icon = "mdi mdi-wallet-travel" });
+            
             items.Add(
                 new SidebarViewModel
                 {
