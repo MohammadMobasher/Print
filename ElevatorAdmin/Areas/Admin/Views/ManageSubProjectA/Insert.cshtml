@@ -1,7 +1,8 @@
-﻿
+﻿@using DataLayer.Entities
 
 @{
     Layout = "~/Views/Shared/_ModalLayout.cshtml";
+    var keywords = ViewBag.Keywords as List<Keywords>;
 }
 
 
@@ -23,8 +24,12 @@
             <div class="form-group">
                 <label for="Text" class="control-label col-sm-12">Color <i class="text-danger fa fa-star size-8"></i></label>
                 <div class="col-sm-12">
-                    <select name="Color" asp-items="@Html.GetEnumSelectList<DataLayer.SSOT.ColorSSOT>()" required="required" class="form-control form-control-lg">
+                    <select name="Color"  required="required" class="form-control form-control-lg">
                         <option value="">Please Choose...</option>
+                        @foreach (var item in keywords.Where(a => a.Type == DataLayer.SSOT.KeywordTypeSSOT.Color))
+                        {
+                            <option value="@item.Id">@item.Keyword</option>
+                        }
                     </select>
                 </div>
             </div>
@@ -86,8 +91,12 @@
             <div class="form-group">
                 <label for="BindingType" class="control-label col-sm-12">BindingType <i class="text-danger fa fa-star size-8"></i></label>
                 <div class="col-sm-12">
-                    <select name="BindingType" asp-items="@Html.GetEnumSelectList<DataLayer.SSOT.BindingSSOT>()" required="required" class="form-control form-control-lg">
+                    <select name="BindingType"  required="required" class="form-control form-control-lg">
                         <option value="">Please Choose...</option>
+                        @foreach (var item in keywords.Where(a => a.Type == DataLayer.SSOT.KeywordTypeSSOT.BindingType))
+                        {
+                            <option value="@item.Id">@item.Keyword</option>
+                        }
                     </select>
                 </div>
             </div>
@@ -96,8 +105,12 @@
             <div class="form-group">
                 <label for="BookCoverColor" class="control-label col-sm-12">BookCoverColor <i class="text-danger fa fa-star size-8"></i></label>
                 <div class="col-sm-12">
-                    <select name="BookCoverColor" asp-items="@Html.GetEnumSelectList<DataLayer.SSOT.ColorSSOT>()" required="required" class="form-control form-control-lg">
+                    <select name="BookCoverColor" required="required" class="form-control form-control-lg">
                         <option value="">Please Choose...</option>
+                        @foreach (var item in keywords.Where(a => a.Type == DataLayer.SSOT.KeywordTypeSSOT.BookCoverColor))
+                        {
+                            <option value="@item.Id">@item.Keyword</option>
+                        }
                     </select>
                 </div>
             </div>
@@ -116,8 +129,12 @@
             <div class="form-group">
                 <label for="BookCoverMaterial" class="control-label col-sm-12">BookCoverMaterial <i class="text-danger fa fa-star size-8"></i></label>
                 <div class="col-sm-12">
-                    <select name="BookCoverMaterial" asp-items="@Html.GetEnumSelectList<DataLayer.SSOT.BookCoverMaterialSSOT>()" required="required" class="form-control form-control-lg">
+                    <select name="BookCoverMaterial" required="required" class="form-control form-control-lg">
                         <option value="">Please Choose...</option>
+                        @foreach (var item in keywords.Where(a => a.Type == DataLayer.SSOT.KeywordTypeSSOT.BookCoverMaterial))
+                        {
+                            <option value="@item.Id">@item.Keyword</option>
+                        }
                     </select>
                 </div>
             </div>
@@ -128,8 +145,12 @@
     <div class="form-group">
         <label for="Size" class="control-label col-sm-12">Size <i class="text-danger fa fa-star size-8"></i></label>
         <div class="col-sm-12">
-            <select name="Size" asp-items="@Html.GetEnumSelectList<DataLayer.SSOT.SizeSSOT>()" required="required" class="form-control form-control-lg">
+            <select name="Size" required="required" class="form-control form-control-lg">
                 <option value="">Please Choose...</option>
+                @foreach (var item in keywords.Where(a => a.Type == DataLayer.SSOT.KeywordTypeSSOT.Size))
+                {
+                    <option value="@item.Id">@item.Keyword</option>
+                }
             </select>
         </div>
     </div>
@@ -193,7 +214,7 @@
             changeSubProjectType($(this).val());
 
         });
-        
+
 
         function changeSubProjectType(selectedValue) {
             if (parseInt(selectedValue) == 0) {

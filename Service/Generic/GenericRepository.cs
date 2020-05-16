@@ -449,6 +449,14 @@ namespace Service
             return TableNoTracking.WhereIf(where != null, where).ProjectTo<TProject>().ToList();
         }
 
+        public virtual List<TEntity> GetAll(Expression<Func<TEntity, bool>> where = null)
+        {
+            return TableNoTracking.WhereIf(where != null, where).ToList();
+        }
+        public async virtual Task<List<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> where = null)
+        {
+            return await TableNoTracking.WhereIf(where != null, where).ToListAsync();
+        }
 
 
 

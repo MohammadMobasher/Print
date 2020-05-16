@@ -23,15 +23,17 @@ namespace PrintingSolutionAdmin.Areas.Customer.Controllers
         private readonly SubProjectRepository _subProjectRepository;
         private readonly ProjectRepository _projectRepository;
         private readonly BillRepository _billRepository;
-
+        private readonly KeywordsRepository _keywordsRepository;
         public ManageSubProjectCController(UsersAccessRepository usersAccessRepository,
             SubProjectRepository subProjectRepository,
             ProjectRepository projectRepository,
-            BillRepository billRepository) : base(usersAccessRepository)
+            BillRepository billRepository,
+            KeywordsRepository keywordsRepository) : base(usersAccessRepository)
         {
             _subProjectRepository = subProjectRepository;
             _projectRepository = projectRepository;
             _billRepository = billRepository;
+            _keywordsRepository = keywordsRepository;
         }
 
         [ActionRole("Task List")]
@@ -70,6 +72,9 @@ namespace PrintingSolutionAdmin.Areas.Customer.Controllers
             var project = await _projectRepository.GetByIdAsync(projectId);
             // شماره سازمان مورد نظر
             ViewBag.OrganizationId = project.OrganizationId;
+            // لیست کلید واژه ها
+            ViewBag.Keywords =await _keywordsRepository.GetAllAsync(a => a.IsActive);
+
             return View();
         }
 
@@ -94,6 +99,8 @@ namespace PrintingSolutionAdmin.Areas.Customer.Controllers
             ViewBag.ProjectId = result.ProjectId;
             // شماره سازمان مورد نظر
             ViewBag.OrganizationId = result.OrganizationId;
+            // لیست کلید واژه ها
+            ViewBag.Keywords = await _keywordsRepository.GetAllAsync(a => a.IsActive);
             return View(result);
         }
 

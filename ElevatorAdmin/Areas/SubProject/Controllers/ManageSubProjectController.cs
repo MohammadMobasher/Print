@@ -9,6 +9,7 @@ using DataLayer.ViewModels;
 using DataLayer.ViewModels.ProjectAndSubProject.ProjectViewModel;
 using DataLayer.ViewModels.ProjectAndSubProject.SubProjectViewModel;
 using Microsoft.AspNetCore.Mvc;
+using Service.Repos;
 using Service.Repos.ProjectAndSubProject;
 using Service.Repos.User;
 using WebFramework.Authenticate;
@@ -23,13 +24,16 @@ namespace PrintingSolutionAdmin.Areas.SubProject.Controllers
     {
         private readonly SubProjectRepository _subProjectRepository;
         private readonly ProjectRepository _projectRepository;
+        private readonly KeywordsRepository _keywordsRepository;
 
         public ManageSubProjectController(UsersAccessRepository usersAccessRepository,
             SubProjectRepository subProjectRepository,
-            ProjectRepository projectRepository) : base(usersAccessRepository)
+            ProjectRepository projectRepository,
+            KeywordsRepository keywordsRepository) : base(usersAccessRepository)
         {
             _subProjectRepository = subProjectRepository;
             _projectRepository = projectRepository;
+            _keywordsRepository = keywordsRepository;
         }
 
         [ActionRole("Task List")]
@@ -69,6 +73,8 @@ namespace PrintingSolutionAdmin.Areas.SubProject.Controllers
             var project = await _projectRepository.GetByIdAsync(projectId);
             // شماره سازمان مورد نظر
             ViewBag.OrganizationId = project.OrganizationId;
+            // لیست کلید واژه ها
+            ViewBag.Keywords = await _keywordsRepository.GetAllAsync(a => a.IsActive);
             return View();
         }
 
@@ -93,6 +99,8 @@ namespace PrintingSolutionAdmin.Areas.SubProject.Controllers
             ViewBag.ProjectId = result.ProjectId;
             // شماره سازمان مورد نظر
             ViewBag.OrganizationId = result.OrganizationId;
+            // لیست کلید واژه ها
+            ViewBag.Keywords = await _keywordsRepository.GetAllAsync(a => a.IsActive);
             return View(result);
         }
 
