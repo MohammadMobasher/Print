@@ -1,0 +1,216 @@
+﻿@using DataLayer.DTO.ProjectAndSubProject.ProjectDTO
+@using DataLayer.DTO.Organizations
+@using DataLayer.ViewModels.BreadCrumb
+
+@model List<ProjectDTO>
+
+@{
+    ViewData["Title"] = "Manage Project";
+    List<OrganizationIdTitleDTO> organizations = ViewBag.Organizations;
+
+}
+
+@{
+    TempData["BreadCrumb"] = new List<Breadcrumb>
+{
+new Breadcrumb
+{
+Title = "Project"
+},
+new Breadcrumb
+{
+Title = "Manage Project",
+Href = "/Customer/ManageProjectC/Index"
+}
+};
+}
+
+
+
+
+
+
+
+
+<div class="col-lg-12 col-xl-12 col-md-12 col-sm-12 btn-table">
+
+
+
+    <TableBotton area="Admin" controller="ManageProjectA" action="Insert"
+                 isModal="true"
+                 modalTitle="New Item"
+                 title="Insert"
+                 icon="fa-plus"
+                 buttonClass="btn-primary"></TableBotton>
+
+    <span class="hidden" data-role-table-btn-area-access="">
+
+
+        <TableBotton area="Admin" controller="ManageProjectA" action="ProjevtSummery"
+                     isModal="true"
+                     wichModal="xl"
+                     modalTitle="Project Preview"
+                     title="Preview"
+                     icon="fa-file-text"
+                     buttonClass="btn-info"></TableBotton>
+        @if (ViewBag.SearchModel.RoutinStatus == DataLayer.SSOT.RoutineSSOT.New)
+        {
+
+            <TableBotton area="Admin" controller="ManageProjectA" action="Update"
+                         isModal="true"
+                         modalTitle="Update Item"
+                         title="Update"
+                         icon="fa-pencil-square-o"
+                         buttonClass="btn-warning"></TableBotton>
+
+            <TableBotton area="Admin" controller="ManageProjectA" action="Delete"
+                         isModal="true"
+                         modalTitle="Delete Item"
+                         title="Delete" wichModal="sm"
+                         icon="fa-trash"
+                         buttonClass="btn-danger"></TableBotton>
+
+            <TableBotton area="Admin" controller="ManageSubProjectA" action="Index"
+                         title="Tasks"
+                         icon="fa-plus"
+                         buttonClass="btn-primary"></TableBotton>
+
+
+            <TableBotton area="Admin" controller="ManageProjectA" action="Send"
+                         title="Send"
+                         icon="fa-play"
+                         buttonClass="btn-primary"></TableBotton>
+
+
+
+            <TableBotton area="Admin" controller="ManageProjectA" action="Deny"
+                         title="Deny"
+                         icon="fa-times"
+                         buttonClass="btn-danger"></TableBotton>
+
+            <TableBotton area="Admin" controller="ManageBill" action="ProjectBills"
+                         isModal="true"
+                         modalTitle="Bills"
+                         wichModal="xl"
+                         title="Show Bills"
+                         icon="fa-file-text"
+                         buttonClass="btn-success"></TableBotton>
+
+        }
+
+
+    </span>
+</div>
+
+
+<div class="col-lg-12 col-xl-12 col-md-12 col-sm-12">
+    <form method="post" >
+        <input type="hidden" name="RoutinStatus" value="@(ViewBag.SearchModel.RoutinStatus != null ? ViewBag.SearchModel.RoutinStatus : "New")" />
+
+
+        <ul class="nav nav-tabs tab-table" id="myTab" role="tablist"  data-role="RoutineTabDiv">
+            <li class="nav-item">
+                <a class="nav-link active" data-role="RoutineTab" id="icon-home-tab" data-toggle="tab" routine-href="New" role="tab" aria-controls="icon-home" aria-selected="true">
+                    New
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-role="RoutineTab" id="icon-profile-tab" data-toggle="tab" routine-href="Posted" role="tab" aria-controls="icon-profile"
+                   aria-selected="false">
+                    Posted
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-role="RoutineTab" id="icon-contact-tab" data-toggle="tab" routine-href="Ended" role="tab" aria-controls="icon-contact"
+                   aria-selected="false">
+                    Ended
+                </a>
+            </li>
+        </ul>
+
+
+
+        <table class="table-first table-striped table table-responsive rounded table-hover table-bordered ">
+            <thead>
+                <tr>
+                    <th width="3.5%"></th>
+                    <th width="8%">
+                        #
+                    </th>
+                    <th>Project Title</th>
+                    <th>Organization</th>
+                    <th>User</th>
+
+                <tr>
+
+                    <th>
+                        ---
+                    </th>
+                    <th>
+                        ---
+                    </th>
+                    <th><input type="text" value="@ViewBag.SearchModel.Title" name="Title" class="form-control searchInput" /></th>
+                    <th>
+                        <select name="OrganizationId" class="form-control searchSelect">
+                            <option>Please Choose ...</option>
+
+                            @foreach (OrganizationIdTitleDTO item in organizations)
+                            {
+                                if (item.Id == @ViewBag.SearchModel.OrganizationId)
+                                {
+                                    <option selected value="@item.Id">@item.OrganizationTitle</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.Id">@item.OrganizationTitle</option>
+                                }
+                            }
+                        </select>
+                    </th>
+                    <th>---</th>
+
+
+                    <input type="submit" class="form-control hidden btn btn-success btn-block searchBtn" value="جستجو" />
+
+                </tr>
+            </thead>
+        </table>
+    </form>
+    <div class="bodycontainer scrollable ">
+        <table class="table-second table table-hover table-striped table-condensed table-bordered table-scrollable">
+            <tbody>
+
+                @{var index = 1;}
+                @if (Model != null && Model.Count() != 0)
+                {
+
+                    @foreach (ProjectDTO item in Model)
+                    {
+                        <tr>
+                            <td><input type="checkbox" data-role-table-checkbox="@item.Id"></td>
+                            <td>@(index++)</td>
+                            <td>@item.Title</td>
+                            <td>@item.Organization.OrganizationTitle</td>
+                            <td>@item.User.LastName</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="6" class="text-danger">There is no record</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+
+    <table class="table table-hover table-striped">
+        <tfoot>
+            @Html.Partial("~/Views/Shared/_Pagination.cshtml")
+        </tfoot>
+    </table>
+</div>
+
+

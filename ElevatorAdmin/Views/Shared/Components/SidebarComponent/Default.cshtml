@@ -1,0 +1,63 @@
+﻿@using DataLayer.ViewModels.User
+@using DataLayer.ViewModels.SideBar
+@model List<SidebarViewModel>
+@{ List<UserAccessListViewModel> ListAccess = ViewBag.ListAccess; }
+
+
+@foreach (SidebarViewModel item in Model)
+{
+    @if ((item.Controller == "" && item.Action == "") || ListAccess.Where(x => x.Controller == item.Controller + "Controller" && x.Action == item.Action).SingleOrDefault() != null || ListAccess.Any(a => a.IsAdmin == true))
+    {
+
+        @if (item.Childs == null)
+        {
+
+            <li>
+                <a class="sidenav-item-link" asp-area="@item.Area" asp-action="@item.Action" asp-controller="@item.Controller">
+                    <i class="@item.Icon"></i>
+                    <span class="nav-text">
+                        @item.Title
+                    </span>
+                </a>
+
+            </li>
+        }
+        else
+        {
+            var hasAcessToThisItem = item.Childs.Where(x => ListAccess.Any(xx => xx.Controller == x.Controller + "Controller" && xx.Action == x.Action)).ToList();
+
+
+            if (hasAcessToThisItem != null && hasAcessToThisItem.Count > 0 || ListAccess.Any(a => a.IsAdmin == true))
+            {
+
+                <li class="has-sub">
+                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#@item.CollapsName"
+                       aria-expanded="false" aria-controls="@item.CollapsName">
+                        <i class="@item.Icon"></i>
+                        <span class="nav-text">@item.Title</span> <b class="caret"></b>
+                    </a>
+                    <ul class="collapse" id="@item.CollapsName"
+                        data-parent="#sidebar-menu">
+                        <div class="sub-menu">
+
+                            @foreach (SidebarChildViewModel child in item.Childs)
+                            {
+                                @if (ListAccess.Where(x => x.Controller == child.Controller + "Controller" && x.Action == child.Action).SingleOrDefault() != null || ListAccess.Any(a => a.IsAdmin == true))
+                                {
+                                    <li>
+                                        <a class="sidenav-item-link" asp-area="@child.Area" asp-controller="@child.Controller" asp-action="@child.Action">
+                                            <span class="nav-text">@child.Title</span>
+
+                                        </a>
+                                    </li>
+                                }
+                            }
+
+                        </div>
+                    </ul>
+                </li>
+                
+            }
+        }
+    }
+}

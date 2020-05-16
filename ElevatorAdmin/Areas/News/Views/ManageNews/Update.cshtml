@@ -1,0 +1,126 @@
+﻿@using DataLayer.Entities
+@using DataLayer.ViewModels.BreadCrumb
+
+@model News
+
+
+@{
+    ViewData["Title"] = "Update News";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    TempData["BreadCrumb"] = new List<Breadcrumb>
+    {
+        new Breadcrumb
+        {
+            Title = "News"
+        },
+        new Breadcrumb
+        {
+            Title = "Manage News",
+            Href = "/News/ManageNews/Index"
+        },
+        new Breadcrumb
+        {
+            Title = "Update",
+        }
+    };
+}
+
+<script src="~/lib/ckeditor/ckeditor.js"></script>
+
+
+
+<form class="form-horizontal" method="post" style="" enctype="multipart/form-data">
+
+    <div class="">
+        <div class="container">
+            <div class="form-group">
+                <label for="Title" class="control-label col-sm-12">News Title <i class="text-danger fa fa-star size-8"></i></label>
+                <div class="col-sm-12">
+                    <textarea class="form-control" required="required" name="Title" aria-describedby="Title" placeholder="News Title">@Model.Title</textarea>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="Text" class="control-label col-sm-12">News Text <i class="text-danger fa fa-star size-8"></i></label>
+                <div class="col-sm-12">
+                    <textarea name="Description" id="Description" class="form-control" placeholder="News Text" aria-describedby="Description" required="required">@Model.Description</textarea>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="SummeryNews" class="control-label col-sm-12">News Summery <i class="text-danger fa fa-star size-8"></i></label>
+                <div class="col-sm-12">
+                    <textarea class="form-control" required="required" name="SummeryNews" aria-describedby="Title" placeholder="News Summery">@Model.SummeryNews</textarea>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="Text" class="control-label col-sm-12">News Group <i class="text-danger fa fa-star size-8"></i></label>
+                <div class="col-sm-12">
+                    <select name="NewsGroupId" required="required" class="form-control form-control-lg">
+                        <option>Please choose ...</option>
+                        @foreach (var item in ViewBag.NewsGroups)
+                        {
+                            if (Model.NewsGroupId == item.Id)
+                            {
+                                <option selected value="@item.Id">@item.Title</option>
+                            }
+                            else
+                            {
+                                <option value="@item.Id">@item.Title</option>
+                            }
+
+
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="Text" class="control-label col-sm-12">News Image <i class="text-danger fa fa-star size-8"></i></label>
+                <div class="col-sm-12">
+                    <input name="ImageFile"
+                           data-default-file="/@Model.ImageAddress.Replace("wwwroot", "")"
+                           type="file"
+                           class="dropify"
+                           data-show-loader="true"
+                           accept="image/gif, image/jpeg, image/png , image/bmp , image/jpg"
+                           id="ImageAddress" size="50">
+                </div>
+                <input type="hidden" value="@Model.ImageAddress" name="ImageAddress" />
+            </div>
+
+            <div class="form-group">
+                <label for="Tags" class="control-label col-sm-12">News Tags <i class="text-danger fa fa-star size-8"></i></label>
+                <div class="col-sm-12">
+                    <input type="text" required="required" class="form-control" value="@Model.Tags" name="Tags" data-role="tagsinput" placeholder="News Tags" />
+                </div>
+            </div>
+
+
+            @*<div class="tags-default">
+                    <input type="text" value="کلمه یک,کلمه دو,کلمه سه" data-role="tagsinput" placeholder="افزودن تگ" />
+                </div>*@
+
+            <button type="submit" class="btn btn-block btn-success">Submit</button>
+
+
+
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    CKEDITOR.replace('Description');
+
+                });
+            </script>
+
+        </div>
+    </div>
+</form>
+
+
+
+
+

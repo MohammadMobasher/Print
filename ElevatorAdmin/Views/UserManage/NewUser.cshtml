@@ -1,0 +1,81 @@
+﻿
+@{
+    ViewData["Title"] = "NewUser";
+    Layout = null;
+    
+}
+
+<form class="form-horizontal" method="post" asp-action="NewUser" asp-controller="UserManage">
+
+    <div class="alert alert-warning" role="alert">
+
+        <ul>
+            <li>Minimum required length is 6</li>
+            <li>Password must has Digit</li>
+        </ul>
+
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xl-6">
+            <div class="form-group">
+                <label for="FirstName" class="control-label col-sm-12">Name <i class="text-danger fa fa-star size-8"></i></label>
+                <div class="col-sm-12">
+                    <input type="text" class="form-control" required="required" name="FirstName" aria-describedby="FirstName" placeholder="Name" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="LastName" class="control-label col-sm-12">LastName <i class="text-danger fa fa-star size-8"></i></label>
+                <div class="col-sm-12">
+                    <input type="text" class="form-control" required="required" name="LastName" aria-describedby="LastName" placeholder="LastName" />
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <label for="RePassword" class="control-label col-sm-12">Confirm Password <i class="text-danger fa fa-star size-8"></i></label>
+                <div class="col-sm-12">
+                    <input type="password" class="form-control" required="required" name="RePassword" aria-describedby="RePassword" placeholder="Confirm Password" />
+                </div>
+            </div>
+
+
+
+
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xl-6">
+            <div class="form-group">
+                <label for="PhoneNumber" class="control-label col-sm-12">Phone <i class="text-danger fa fa-star size-8"></i></label>
+                <div class="col-sm-12">
+                    <input type="text" class="form-control" required="required" name="PhoneNumber" aria-describedby="PhoneNumber" placeholder="Phone" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="UserName" class="control-label col-sm-12">UserName <i class="text-danger fa fa-star size-8"></i></label>
+                <div class="col-sm-12">
+                    <input type="text" class="form-control" required="required" name="UserName" aria-describedby="UserName" placeholder="UserName" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="Password" class="control-label col-sm-12">Password <i class="text-danger fa fa-star size-8"></i></label>
+                <div class="col-sm-12">
+                    <input type="password" class="form-control" required="required" name="Password" aria-describedby="Password" placeholder="Password" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="Email" class="control-label col-sm-12">Email <i class="text-danger fa fa-star size-8"></i></label>
+        <div class="col-sm-12">
+            <input type="text" class="form-control" required="required" name="Email" aria-describedby="Email" placeholder="Email" />
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-block btn-success">Submit</button>
+
+</form>

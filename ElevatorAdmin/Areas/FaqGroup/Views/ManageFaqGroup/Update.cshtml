@@ -1,0 +1,29 @@
+﻿@using DataLayer.Entities.FAQs
+@model FaqGroup
+
+@{
+    Layout = null;
+}
+
+
+<form id="frm" action="/FaqGroup/ManageFaqGroup/Update" class="form-horizontal" method="post" style="">
+
+    <input type="hidden" name="Id" value="@Model.Id" />
+
+    <div class="form-group">
+        <label for="Title" class="control-label col-sm-12">Group Title <i class="text-danger fa fa-star size-8"></i></label>
+        <div class="col-sm-12">
+            <input type="text" value="@Model.Title" class="form-control" required="required" name="Title" aria-describedby="Title" placeholder="Group Title" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="Icon" class="control-label col-sm-12">Icon <i class="text-danger fa fa-star size-8"></i></label>
+        <div class="col-sm-12">
+            <input type="text" value="@Model.Icon" class="form-control" required="required" name="Icon" aria-describedby="Icon" placeholder="Icon" />
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-block btn-success" id="sbtForm">Submit</button>
+
+</form>

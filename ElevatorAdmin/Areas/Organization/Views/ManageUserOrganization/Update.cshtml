@@ -1,0 +1,66 @@
+﻿@using DataLayer.DTO.UserDTO
+@using DataLayer.DTO.Organizations
+@using DataLayer.Entities
+
+@model UserOrganization
+@{
+    Layout = null;
+    List<UserIdTitleDTO> users = ViewBag.Users;
+    List<OrganizationIdTitleDTO> organization = ViewBag.Organization;
+}
+
+
+<form id="frm" action="/Organization/ManageUserOrganization/Update" class="form-horizontal" method="post" style="">
+
+    <input type="hidden" name="Id" value="@Model.Id" />
+
+    <div class="form-group">
+        <label for="OrganizationId" class="control-label col-sm-4">Organization <i class="text-danger fa fa-star size-8"></i></label>
+        <div class="col-sm-12">
+            <select class="js-example-basic-single" name="OrganizationId">
+                <option value="">Please Choose ...</option>
+                @foreach (OrganizationIdTitleDTO item in organization)
+                {
+                    if (item.Id == Model.OrganizationId)
+                    {
+                        <option selected value="@item.Id">@item.OrganizationTitle</option>
+                    }
+                    else
+                    {
+                        <option value="@item.Id">@item.OrganizationTitle</option>
+                    }
+                }
+            </select>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label for="UserId" class="control-label col-sm-4">User <i class="text-danger fa fa-star size-8"></i></label>
+        <div class="col-sm-12">
+            <select class="js-example-basic-single" name="UserId">
+                <option value="">Please Choose ...</option>
+                @foreach (UserIdTitleDTO item in users)
+                {
+                    if (item.Id == Model.UserId)
+                    {
+                        <option selected value="@item.Id">@item.FirstName @item.LastName</option>
+                    }
+                    else
+                    {
+                        <option value="@item.Id">@item.FirstName @item.LastName</option>
+                    }
+                }
+            </select>
+        </div>
+    </div>
+
+
+    <button type="submit" class="btn btn-block btn-success" id="sbtForm">Submit</button>
+
+    <script>
+    $(function (){
+        $('.js-example-basic-single').select2();
+    });
+    </script>
+</form>

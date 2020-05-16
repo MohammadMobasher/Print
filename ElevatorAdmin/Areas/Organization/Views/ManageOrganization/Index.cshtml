@@ -1,0 +1,136 @@
+﻿@using DataLayer.DTO.Organizations
+@using DataLayer.ViewModels.BreadCrumb
+
+@model List<OrganizationDTO>
+
+@{
+    ViewData["Title"] = "List Item";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@{
+    TempData["BreadCrumb"] = new List<Breadcrumb>
+    {
+        new Breadcrumb
+        {
+            Title = "Organization"
+        },
+        new Breadcrumb
+        {
+            Title = "Manage Organization",
+            Href = "/Organization/ManageOrganization/Index"
+        }
+    };
+}
+
+
+
+
+
+
+
+
+<div class="col-lg-12 col-xl-12 col-md-12 col-sm-12 btn-table">
+
+
+
+    <TableBotton area="Organization" controller="ManageOrganization" action="Insert"
+                 isModal="true"
+                 modalTitle="New Item"
+                 title="Insert"
+                 icon="fa-plus"
+                 buttonClass="btn-primary"></TableBotton>
+
+    <span class="hidden" data-role-table-btn-area-access="">
+
+
+
+        <TableBotton area="Organization" controller="ManageOrganization" action="Update"
+                     isModal="true"
+                     modalTitle="Update Item"
+                     title="Update"
+                     icon="fa-pencil-square-o"
+                     buttonClass="btn-warning"></TableBotton>
+
+        <TableBotton area="Organization" controller="ManageOrganization" action="Delete"
+                     isModal="true"
+                     modalTitle="Delete Item"
+                     title="Delete" wichModal="sm"
+                     icon="fa-trash"
+                     buttonClass="btn-danger"></TableBotton>
+
+
+    </span>
+</div>
+
+
+<div class="col-lg-12 col-xl-12 col-md-12 col-sm-12">
+
+    <table class="table-first table-striped table table-responsive rounded table-hover table-bordered ">
+        <thead>
+            <tr>
+                <th width="3.5%"></th>
+                <th width="8%">
+                    #
+                </th>
+                <th>OrganizationName</th>
+                <th>Phone</th>
+                <th>Address</th>
+            <tr>
+                <form method="post">
+                    <th>
+                        ---
+                    </th>
+                    <th>
+                        ---
+                    </th>
+                    <th><input type="text" value="@ViewBag.SearchModel.OrganizationTitle" name="OrganizationTitle" class="form-control searchInput" /></th>
+                    <th><input type="text" value="@ViewBag.SearchModel.OrganizationPhone" name="OrganizationPhone" class="form-control searchInput" /></th>
+                    <th><input type="text" value="@ViewBag.SearchModel.OrganizationAddress" name="OrganizationAddress" class="form-control searchInput" /></th>
+                    
+                   
+
+                    <input type="submit" class="form-control hidden btn btn-success btn-block searchBtn" value="جستجو" />
+                </form>
+            </tr>
+        </thead>
+    </table>
+    <div class="bodycontainer scrollable ">
+        <table class="table-second table table-hover table-striped table-condensed table-bordered table-scrollable">
+            <tbody>
+
+                @{var index = 1;}
+                @if (Model != null)
+                {
+
+                    @foreach (OrganizationDTO item in Model)
+                    {
+                        <tr>
+                            <td><input type="checkbox" data-role-table-checkbox="@item.Id"></td>
+                            <td>@(index++)</td>
+                            <td>@item.OrganizationTitle</td>
+                            <td>@item.OrganizationPhone</td>
+                            <td>@item.OrganizationAddress</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="6" class="text-danger">There is no record</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+
+    <table class="table table-hover table-striped">
+        <tfoot>
+            @Html.Partial("~/Views/Shared/_Pagination.cshtml")
+        </tfoot>
+    </table>
+</div>
+
+

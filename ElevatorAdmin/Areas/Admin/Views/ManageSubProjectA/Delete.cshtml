@@ -1,0 +1,29 @@
+﻿@using DataLayer.DTO
+@model DeleteDTO
+
+@{
+    Layout = null;
+}
+
+
+<form action="/Admin/ManageSubProjectA/Delete" class="form-horizontal" method="post" style="">
+
+    <input type="hidden" value="@Model.Id" name="Id" />
+    <input type="hidden" value="@ViewBag.ProjectId" name="projectId" />
+
+    <div class="alert alert-warning" role="alert">
+
+        Are you sure for delete?
+
+    </div>
+
+    <div class="row">
+        <div class="col-6">
+            <button type="submit" class="btn btn-block btn-danger">Yes</button>
+        </div>
+        <div class="col-6">
+            <button type="button" class="btn btn-block btn-success">No</button>
+        </div>
+    </div>
+
+</form>

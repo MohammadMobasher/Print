@@ -1,0 +1,277 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_ModalLayout.cshtml";
+}
+
+
+<form id="frm" action="/Customer/ManageSubProjectC/Insert" class="form-horizontal" method="post" style="" enctype="multipart/form-data">
+
+    <input type="hidden" name="ProjectId" value="@ViewBag.ProjectId" />
+    <input type="hidden" name="OrganizationId" value="@ViewBag.OrganizationId" />
+
+    <div class="row">
+        <div class="col-lg-4 col-xl-4 col-md-12 col-sm-12">
+            <div class="form-group">
+                <label for="Title" class="control-label col-sm-12">Task Title <i class="text-danger fa fa-star size-8"></i></label>
+                <div class="col-sm-12">
+                    <input type="text" class="form-control" required="required" name="Title" aria-describedby="TaskTitle" placeholder="Task Title" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="Text" class="control-label col-sm-12">Color <i class="text-danger fa fa-star size-8"></i></label>
+                <div class="col-sm-12">
+                    <select name="Color" asp-items="@Html.GetEnumSelectList<DataLayer.SSOT.ColorSSOT>()" required="required" class="form-control form-control-lg">
+                        <option value="">Please Choose...</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-xl-4 col-md-12 col-sm-12 ">
+            <div class="form-group">
+                <label for="Title" class="control-label col-sm-12">Issue Number <i class="text-danger fa fa-star size-8"></i></label>
+                <div class="col-sm-12">
+                    <input type="text" class="form-control" required="required" name="Number" aria-describedby="IssueNumber" placeholder="Issue Number" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="Text" class="control-label col-sm-12">PaperMaterial <i class="text-danger fa fa-star size-8"></i></label>
+                <div class="col-sm-12">
+                    <select name="PaperMaterial" asp-items="@Html.GetEnumSelectList<DataLayer.SSOT.PaperMaterialSSOT>()" required="required" class="form-control form-control-lg">
+                        <option value="">Please Choose...</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-lg-4 col-xl-4 col-md-12 col-sm-12">
+            @*<div class="form-group">
+                    <label for="Text" class="control-label col-sm-12">SuggestedTime <i class="text-danger fa fa-star size-8"></i></label>
+                    <div class="col-sm-12">
+                        <input type="date" class="form-control" required="required" name="SuggestedTime" aria-describedby="SuggestedTime" placeholder="Suggested Time" />
+                    </div>
+                </div>*@
+
+
+
+            <div class="form-group">
+                <label for="Text" class="control-label col-sm-12">Priority <i class="text-danger fa fa-star size-8"></i></label>
+                <div class="col-sm-12">
+                    <select name="PrioritySSOT" asp-items="@Html.GetEnumSelectList<DataLayer.SSOT.PrioritySSOT>()" required="required" class="form-control form-control-lg">
+                        <option value="">Please Choose...</option>
+                    </select>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="form-group">
+                <label for="Works" class="control-label col-sm-12">Works <i class="text-danger fa fa-star size-8"></i></label>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-3">
+                            <label class="control outlined control-checkbox">
+                                Print
+                                <input type="checkbox" />
+                                <div class="control-indicator"></div>
+                            </label>
+                        </div>
+                        <div class="col-3">
+                            <label class="control outlined control-checkbox">
+                                Cover
+                                <input type="checkbox" />
+                                <div class="control-indicator"></div>
+                            </label>
+                        </div>
+                        <div class="col-3">
+                            <label class="control outlined control-checkbox">
+                                Cut
+                                <input type="checkbox" />
+                                <div class="control-indicator"></div>
+                            </label>
+                        </div>
+                        <div class="col-3">
+                            <label class="control outlined control-checkbox">
+                                Deliver
+                                <input type="checkbox" />
+                                <div class="control-indicator"></div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="Text" class="control-label col-sm-12">Type Task <i class="text-danger fa fa-star size-8"></i></label>
+        <div class="col-sm-12">
+            <select name="SubProjectType" asp-items="@Html.GetEnumSelectList<DataLayer.SSOT.ProjectTypeSSOT>()" required="required" class="form-control form-control-lg">
+                <option value="">Please Choose...</option>
+            </select>
+        </div>
+    </div>
+
+
+    <div class="row BookOptions hidden">
+        <div class="col-lg-6 col-xl-6 col-md-12 col-sm-12">
+
+            <div class="form-group">
+                <label for="BindingType" class="control-label col-sm-12">BindingType <i class="text-danger fa fa-star size-8"></i></label>
+                <div class="col-sm-12">
+                    <select name="BindingType" asp-items="@Html.GetEnumSelectList<DataLayer.SSOT.BindingSSOT>()" required="required" class="form-control form-control-lg">
+                        <option value="">Please Choose...</option>
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="BookCoverColor" class="control-label col-sm-12">BookCoverColor <i class="text-danger fa fa-star size-8"></i></label>
+                <div class="col-sm-12">
+                    <select name="BookCoverColor" asp-items="@Html.GetEnumSelectList<DataLayer.SSOT.ColorSSOT>()" required="required" class="form-control form-control-lg">
+                        <option value="">Please Choose...</option>
+                    </select>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-lg-6 col-xl-6 col-md-12 col-sm-12">
+
+            <div class="form-group">
+                <label for="BindingNumber" class="control-label col-sm-12">BindingNumber <i class="text-danger fa fa-star size-8"></i></label>
+                <div class="col-sm-12">
+                    <input type="number" class="form-control" name="BindingNumber" aria-describedby="BindingNumber" placeholder="BindingNumber" />
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="BookCoverMaterial" class="control-label col-sm-12">BookCoverMaterial <i class="text-danger fa fa-star size-8"></i></label>
+                <div class="col-sm-12">
+                    <select name="BookCoverMaterial" asp-items="@Html.GetEnumSelectList<DataLayer.SSOT.BookCoverMaterialSSOT>()" required="required" class="form-control form-control-lg">
+                        <option value="">Please Choose...</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label for="Size" class="control-label col-sm-12">Size <i class="text-danger fa fa-star size-8"></i></label>
+        <div class="col-sm-12">
+            <select name="Size" asp-items="@Html.GetEnumSelectList<DataLayer.SSOT.SizeSSOT>()" required="required" class="form-control form-control-lg">
+                <option value="">Please Choose...</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row cistomeSize hidden">
+        <div class="col-lg-6 col-xl-6 col-md-12 col-sm-12">
+
+            <div class="form-group">
+                <label for="Height" class="control-label col-sm-12">Height <i class="text-danger fa fa-star size-8"></i></label>
+                <div class="col-sm-12">
+                    <input type="number" class="form-control" name="Height" aria-describedby="Height" placeholder="Height" />
+                </div>
+            </div>
+
+        </div>
+        <div class="col-lg-6 col-xl-6 col-md-12 col-sm-12">
+
+            <div class="form-group">
+                <label for="Width" class="control-label col-sm-12">Width <i class="text-danger fa fa-star size-8"></i></label>
+                <div class="col-sm-12">
+                    <input type="number" class="form-control" name="Width" aria-describedby="Width" placeholder="Width" />
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="BookOrSeetAddress" class="control-label col-sm-12">Book Or Seet file <i class="text-danger fa fa-star size-8"></i></label>
+        <div class="col-sm-12">
+            <input name="BookOrSeetAddress"
+                   required
+                   type="file" class="dropify"
+                   data-show-loader="true"
+                   accept="image/gif, image/jpeg, image/png , image/bmp , image/jpg, file/pdf"
+                   id="BookOrSeetAddress" size="50">
+        </div>
+    </div>
+
+
+    <div class="form-group hidden BookCoverAddress">
+        <label for="BookCoverAddress" class="control-label col-sm-12">Book Cover <i class="text-danger fa fa-star size-8"></i></label>
+        <div class="col-sm-12">
+            <input name="BookCoverAddress"
+                   required
+                   type="file" class="dropify"
+                   data-show-loader="true"
+                   accept="image/gif, image/jpeg, image/png , image/bmp , image/jpg"
+                   id="BookCoverAddress" size="50">
+        </div>
+    </div>
+
+
+    <button type="submit" class="btn btn-block btn-success" id="sbtForm">Submit</button>
+
+
+    <script>
+
+        $('[name="SubProjectType"]').on("change", function (event) {
+
+            changeSubProjectType($(this).val());
+
+        });
+
+
+        function changeSubProjectType(selectedValue) {
+            if (parseInt(selectedValue) == 0) {
+                $(".BookOptions").removeClass("hidden");
+                $('.BookCoverAddress').removeClass("hidden");
+                $('[name="BindingType"]').attr("required", "required");
+                $('[name="BindingNumber"]').attr("required", "required");
+                $('[name="BookCoverColor"]').attr("required", "required");
+                $('[name="BookCoverMaterial"]').attr("required", "required");
+                $('[name="BookCoverAddress"]').attr("required", "required");
+            } else {
+                $(".BookOptions").addClass("hidden");
+                $(".BookCoverAddress").addClass("hidden");
+                $('[name="BindingType"]').removeAttr("required", "required");
+                $('[name="BindingNumber"]').removeAttr("required", "required");
+                $('[name="BookCoverColor"]').removeAttr("required", "required");
+                $('[name="BookCoverMaterial"]').removeAttr("required", "required");
+                $('[name="BookCoverAddress"]').removeAttr("required", "required");
+            }
+        }
+
+        $('[name="Size"]').on("change", function (event) {
+
+            changeSize($(this).val());
+
+        });
+
+        function changeSize(selectedValue) {
+            if (parseInt(selectedValue) == 5) {
+                $(".cistomeSize").removeClass("hidden");
+                $('[name="Height"]').attr("required", "required");
+                $('[name="Width"]').attr("required", "required");
+            } else {
+                $(".cistomeSize").addClass("hidden");
+                $('[name="Height"]').removeAttr("required", "required");
+                $('[name="Width"]').removeAttr("required", "required");
+            }
+        }
+
+    </script>
+
+</form>

@@ -1,0 +1,143 @@
+﻿@using DataLayer.DTO.ProjectAndSubProject.SubProjectDTO
+@using DataLayer.DTO.Organizations
+@using DataLayer.ViewModels.BreadCrumb
+@using DataLayer.SSOT
+
+@model List<SubProjectEmployeeDTO>
+
+@{
+    ViewData["Title"] = "Manage Task";
+    //ProjectStatusSSOT projectStatus = ViewBag.ProjectStatus;
+    //List<OrganizationIdTitleDTO> organizations = ViewBag.Organizations;
+
+}
+
+@{
+    TempData["BreadCrumb"] = new List<Breadcrumb>
+{
+
+new Breadcrumb
+{
+Title = "Manage Project",
+Href = "/Admin/ManageProjectA/Index"
+},
+new Breadcrumb
+{
+Title = "Manage Tasks"
+}
+};
+}
+
+
+
+
+
+
+
+
+<div class="col-lg-12 col-xl-12 col-md-12 col-sm-12 btn-table">
+
+
+
+    <span class="hidden" data-role-table-btn-area-access="">
+
+
+
+        <TableBotton area="Employee" controller="ManageTaskBinding" action="DoPrint"
+                     title="Add Done"
+                     isModal="true"
+                     wichModal="sm"
+                     modalTitle="Add Done"
+                     icon="fa-print"
+                     buttonClass="btn-primary"></TableBotton>
+
+
+
+    </span>
+
+
+
+</div>
+
+
+<div class="col-lg-12 col-xl-12 col-md-12 col-sm-12">
+
+    <table class="table-first table-striped table table-responsive rounded table-hover table-bordered ">
+        <thead>
+            <tr>
+                <th width="3.5%"></th>
+                <th width="5%">
+                    #
+                </th>
+                <th>Title</th>
+                <th>Project</th>
+                <th>Type</th>
+                <th>Priority</th>
+                <th>Whole Number</th>
+                <th>Num of done</th>
+
+
+
+            <tr>
+                <form method="post">
+                    <th>
+                        ---
+                    </th>
+                    <th>
+                        ---
+                    </th>
+                    <th><input type="text" value="@ViewBag.SearchModel.Title" name="Title" class="form-control searchInput" /></th>
+                    <th>
+                        ---
+                    </th>
+                    <th>---</th>
+                    <th>---</th>
+                    <th>---</th>
+                    <th>---</th>
+
+                    <input type="submit" class="form-control hidden btn btn-success btn-block searchBtn" value="جستجو" />
+                </form>
+            </tr>
+        </thead>
+    </table>
+    <div class="bodycontainer scrollable ">
+        <table class="table-second table table-hover table-striped table-condensed table-bordered table-scrollable">
+            <tbody>
+
+                @{var index = 1;}
+                @if (Model != null && Model.Count() != 0)
+                {
+
+                    @foreach (SubProjectEmployeeDTO item in Model)
+                    {
+                        <tr>
+                            <td><input type="checkbox" data-role-table-checkbox="@item.Id"></td>
+                            <td>@(index++)</td>
+                            <td>@item.Title</td>
+                            <td>@item.Project.Title</td>
+                            <td>@item.SubProjectType</td>
+                            <td>@item.Priority</td>
+                            <td>@item.Number</td>
+                            <td>@item.NumOfBinding</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="6" class="text-danger">There is no record</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+
+    <table class="table table-hover table-striped">
+        <tfoot>
+            @Html.Partial("~/Views/Shared/_Pagination.cshtml")
+        </tfoot>
+    </table>
+</div>
+
+

@@ -1,0 +1,72 @@
+﻿
+@using  DataLayer.DTO.BIll
+
+@model List<BillFullInfoDTO>
+
+@{
+    ViewData["Title"] = "ProjectBills";
+    Layout = "~/Views/Shared/_ModalLayout.cshtml";
+}
+
+
+
+<table class="table table-responsive rounded table-hover table-bordered">
+
+    <tr>
+        <td width="3%">#</td>
+        <td>Task Type</td>
+        <td>Priority</td>
+        <td>Page Number</td>
+        <td>Number</td>
+        <td>Color</td>
+        <td>$ Each Page</td>
+        <td>$ Sum Each Page</td>
+        <td>$ Each Cover</td>
+        <td>$ Sum Cover</td>
+        <td>$ Delivery (KDW)</td>
+        <td>$ Sum</td>
+
+        <td>Size</td>
+        <td>Height</td>
+        <td>Width</td>
+        <td>Paper Material</td>
+        <td>Binding Type</td>
+        <td>Binding Number</td>
+        <td>Cover Color</td>
+        <td>Cover Material</td>
+        
+
+    </tr>
+
+
+    @{var index = 1;}
+    @foreach (BillFullInfoDTO item in Model)
+    {
+        <tr>
+            <td>@(index++)</td>
+            <td>@item.SubProjectType</td>
+            <td>@item.NumberOfPage</td>
+            <td>@item.Priority</td>
+            <td>@item.Number</td>
+            <td>@item.Color</td>
+            <td>@item.PriceEachPage</td>
+            <td>@item.SumPriceEachPage</td>
+            <td>@item.PriceEachCover</td>
+            <td>@item.SumPriceEachCover</td>
+            <td>@(item.PriceDelivery != null ? item.PriceDelivery.Value.ToString() : "---" )</td>
+            <td>@item.SumPrice</td>
+            <td>@item.Size</td>
+            <td>@(item.Height != null ? item.Height.Value.ToString() : "---")</td>
+            <td>@(item.Width != null ? item.Width.Value.ToString() : "---")</td>
+            <td>@item.PaperMaterial</td>
+            <td>@item.BindingType</td>
+            <td>@(item.BindingNumber != null ? item.BindingNumber.Value.ToString() : "---")</td>
+            <td>@item.BookCoverColor</td>
+            <td>@item.BookCoverMaterial</td>
+            
+
+        </tr>
+    }
+
+</table>
+

@@ -1,0 +1,42 @@
+﻿@using DataLayer.DTO.Organizations
+@model List<OrganizationIdTitleDTO>
+
+@{
+    ViewData["Title"] = "SetOrganization";
+    Layout = "~/Views/Shared/_ModalLayout.cshtml";
+}
+
+<form id="frm" action="/UserManage/SetOrganization" class="form-horizontal" method="post" style="">
+
+    <input type="hidden" name="UserId" value="@ViewBag.UserId"/>
+
+    <div class="form-group">
+        <label for="OrganizationId" class="control-label col-sm-4">Organization <i class="text-danger fa fa-star size-8"></i></label>
+        <div class="col-sm-12">
+            <select class="js-example-basic-single" name="OrganizationId">
+                <option value="">Please Choose ...</option>
+                @foreach (OrganizationIdTitleDTO item in Model)
+                {
+                    <option value="@item.Id">@item.OrganizationTitle</option>
+
+                }
+
+            </select>
+        </div>
+    </div>
+
+
+   
+
+
+    <button type="submit" class="btn btn-block btn-success" id="sbtForm">Submit</button>
+
+    <script>
+    $(function (){
+    $('.js-example-basic-single').select2();
+});
+    </script>
+
+</form>
+
+

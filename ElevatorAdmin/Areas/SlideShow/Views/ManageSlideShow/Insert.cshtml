@@ -1,0 +1,71 @@
+﻿
+@{
+    ViewData["Title"] = "ثبت اسلایدشو جدید";
+    Layout = null;
+}
+
+
+
+
+<form action="/SlideShow/ManageSlideShow/Insert" enctype="multipart/form-data" class="form-horizontal" method="post" style="">
+    
+    
+
+    <div class="form-group">
+        <label for="Title" class="control-label col-sm-12">Title<i class="text-danger fa fa-star size-8"></i></label>
+        <div class="col-sm-12">
+            <input type="text" class="form-control" required="required" name="Title" aria-describedby="Title" placeholder="Title" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="Alt" class="control-label col-sm-12">Default Text <i class="text-danger fa fa-star size-8"></i></label>
+        <div class="col-sm-12">
+            <input type="text" class="form-control" required="required" name="Alt" aria-describedby="Alt" placeholder="Default Text" />
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label for="URL" class="control-label col-sm-12">URL <i class="text-danger fa fa-star size-8"></i></label>
+        <div class="col-sm-12">
+            <input type="text" class="form-control" required="required" name="URL" aria-describedby="URL" placeholder="URL" />
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <label for="Text" class="control-label col-sm-12">Image  <i class="text-danger fa fa-star size-8"></i></label>
+        <div class="col-sm-12">
+            <input name="ImageFile"
+                   required
+                   type="file" class="dropify"
+                   data-show-loader="true"
+                   accept="image/gif, image/jpeg, image/png , image/bmp , image/jpg"
+                   size="50">
+
+        </div>
+    </div>
+
+
+
+    <button type="submit" class="btn btn-block btn-success">Submit</button>
+
+    <script>
+        $('.dropify').dropify({
+            messages: {
+                'default': 'Drag and drop a file here or click',
+                'replace': 'لطفا فایل خود را اینجا رها کنید',
+                'remove': 'حذف',
+                'error': 'خطایی رخ داده است'
+            }
+        });
+
+    </script>
+</form>
+
+
+
+
+

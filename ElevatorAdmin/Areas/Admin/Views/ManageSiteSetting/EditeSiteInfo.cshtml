@@ -1,0 +1,68 @@
+﻿@using DataLayer.ViewModels.BreadCrumb
+@using DataLayer.Entities
+
+
+@model SiteSetting
+
+@{
+    ViewData["Title"] = "EditeSiteInfo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@*@{
+    TempData["BreadCrumb"] = new List<Breadcrumb>
+{
+
+new Breadcrumb
+{
+    Title = "Site Info",
+
+}
+};
+}*@
+
+<form class="form-horizontal" asp-area="Admin" asp-controller="ManageSiteSetting" asp-action="EditeSiteInfo" method="post" style="" enctype="multipart/form-data">
+    <div class="">
+        @*card card-default*@
+        <div class="container">
+            <div class="form-group">
+                <label for="SiteName" class="control-label col-sm-12">Site Name <i class="text-danger fa fa-star size-8"></i></label>
+                <div class="col-sm-12">
+                    <input type="text" name="SiteName" value="@Model.SiteName" class="form-control" placeholder="Site Name" aria-describedby="SiteName" required="required" />
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="Text" class="control-label col-sm-12">Logo <i class="text-danger fa fa-star size-8"></i></label>
+                <div class="col-sm-12">
+                    <input name="LogoFile"
+
+                           data-default-file="/@Model.Logo"
+                           type="file" class="dropify"
+                           data-show-loader="true"
+                           accept="image/gif, image/jpeg, image/png , image/bmp , image/jpg"
+                           id="LogoFile" size="50">
+                    <input type="hidden" name="Logo" value="@Model.Logo"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="Text" class="control-label col-sm-12">Login Bacground <i class="text-danger fa fa-star size-8"></i></label>
+                <div class="col-sm-12">
+                    <input name="BackGroudLoginPageFile"
+
+                           data-default-file="/@Model.BackGroudLoginPage.Replace("wwwroot", "")"
+                           type="file" class="dropify"
+                           data-show-loader="true"
+                           accept="image/gif, image/jpeg, image/png , image/bmp , image/jpg"
+                           id="BackGrouondLoginPageFile" size="50">
+                    <input type="hidden" name="BackGroudLoginPage" value="@Model.BackGroudLoginPage" />
+                </div>
+            </div>
+            <button type="submit" class="btn btn-block btn-success">Submit</button>
+        </div>
+    </div>
+</form>

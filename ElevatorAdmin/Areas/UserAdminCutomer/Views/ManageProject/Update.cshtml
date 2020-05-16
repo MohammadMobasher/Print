@@ -1,0 +1,49 @@
+﻿@using DataLayer.DTO.Organizations
+@using DataLayer.Entities
+
+@model List<OrganizationIdTitleDTO>
+
+
+@{
+    Layout = null;
+    Project project = ViewBag.Entity;
+}
+
+
+<form id="frm" action="/UserAdminCutomer/ManageProject/Update" class="form-horizontal" method="post" style="">
+
+    <input type="hidden" name="Id" value="@project.Id" />
+
+    <div class="form-group">
+        <label for="Title" class="control-label col-sm-4">Project Title <i class="text-danger fa fa-star size-8"></i></label>
+        <div class="col-sm-12">
+            <input type="text" class="form-control" value="@project.Title" required="required" name="Title" aria-describedby="ProjectTitle" placeholder="Project Title" />
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <label for="Text" class="control-label col-sm-3">Organization <i class="text-danger fa fa-star size-8"></i></label>
+        <div class="col-sm-12">
+            <select name="OrganizationId" required="required" class="form-control form-control-lg">
+                <option value="">Please Choose...</option>
+                @foreach (OrganizationIdTitleDTO item in Model)
+                {
+                    if (item.Id == project.OrganizationId)
+                    {
+                        <option selected value="@item.Id">@item.OrganizationTitle</option>
+                    }
+                    else
+                    {
+                        <option value="@item.Id">@item.OrganizationTitle</option>
+                    }
+                }
+            </select>
+        </div>
+    </div>
+
+
+    <button type="submit" class="btn btn-block btn-success" id="sbtForm">Submit</button>
+
+</form>

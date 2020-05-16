@@ -1,0 +1,42 @@
+﻿@using Microsoft.AspNetCore.Html
+@using Newtonsoft.Json
+@{
+    var isSuccess = TempData["ServiceResult.Message"] as string;
+    var message = TempData["ServiceResult.Succeed"];
+
+
+    <link href="~/Plugins/sweetalert2/dist/sweetalert2.css" rel="stylesheet" />
+    <script src="~/Plugins/sweetalert2/dist/sweetalert2.js"></script>
+    @if (!string.IsNullOrEmpty(isSuccess))
+    {
+        <script>
+            $(function () {
+
+                function ShowSweetAlert() {
+                    var Message = @(new HtmlString(JsonConvert.SerializeObject(isSuccess)));
+                    var Succeed = @(JsonConvert.SerializeObject(message));
+                    
+                    var text = Message || (Succeed ? 'Mission accomplished' : "The operation encountered an error");
+
+                    swal.fire({
+                        title: (Succeed ? 'success' : 'Error'),
+                        text: text,
+                        type: Succeed ? "success" : "error",
+                        confirmButtonText: "Ok",
+                        showClass: {
+                            popup: 'animated fadeInDown faster'
+                        },
+                        hideClass: {
+                            popup: 'animated fadeOutUp faster'
+                        }
+                    });
+
+                }
+
+                ShowSweetAlert();
+
+            })
+        </script>
+    }
+}
+

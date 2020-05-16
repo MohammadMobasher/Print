@@ -1,0 +1,217 @@
+﻿@using DataLayer.Entities.Users
+@using System.Reflection
+@using Core.CustomAttributes
+@using Newtonsoft.Json
+@using DataLayer.ViewModels.BreadCrumb
+
+@model Roles
+@{
+    ViewData["Title"] = "ویرایش دسترسی";
+    var actionInfo = ViewBag.ActionInfo as Dictionary<string, List<MethodInfo>>;
+    var controllerInfo = ViewBag.ControllerInfo as List<Type>;
+    var listAccess = ViewBag.Accesss as List<UsersAccess>;
+}
+
+@{
+    TempData["BreadCrumb"] = new List<Breadcrumb>
+    {
+        new Breadcrumb
+        {
+            Title = "Roles"
+        },
+        new Breadcrumb
+        {
+            Title = "Manage Roles",
+            Href = "/RoleManage"
+        },
+        new Breadcrumb
+        {
+            Title = "Update",
+        }
+    };
+}
+
+<style>
+    ul {
+        list-style-type: none;
+    }
+</style>
+
+<div class="col-lg-12 col-md-12 col-sm-12 col-xl-12">
+    <form asp-action="Edit" method="post">
+        <input type="hidden" asp-for="Id" />
+
+        <div class="form-group clearfix">
+            <label class="control-label col-md-12">Title <i class="text-danger fa fa-star size-8"></i></label>
+            <div class="col-md-12">
+                <input type="text" asp-for="Name" required class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group clearfix">
+            <label class="control-label col-md-12">Title <i class="text-danger fa fa-star size-8"></i></label>
+            <div class="col-md-12">
+                <input type="text" asp-for="RoleTitle" required class="form-control" />
+            </div>
+        </div>
+
+
+        <div class="container" style="background-color:#EEE; padding-bottom:15px; padding-top:15px; margin-bottom:15px">
+
+            <div class="row grid">
+
+                @{ var raw = 0;}
+                @foreach (var item in controllerInfo)
+                {
+                    var currentAccess = listAccess.FirstOrDefault(a => a.Controller.Equals(item.Name));
+
+                    <div class="col-md-4 col-lg-4 col-xl-4 col-sm-12 grid-item">
+                        <input type="hidden" name="vm[@raw].RoleId" value="@item.Name" />
+
+                        <div class="card card-default">
+                            <div class="card-header card-header-border-bottom">
+
+
+                                <label class="control outlined control-checkbox">
+                                    @(item.GetCustomAttribute<ControllerRoleAttribute>()?.GetName())
+                                    <input type="checkbox" class="checkbox-NotValue checkboxHead" name="vm[@raw].Controller" @(currentAccess != null ? "checked" : "") value="@item.Name" data-role="@item.Name">
+
+                                    <div class="control-indicator"></div>
+                                </label>
+
+
+                            </div>
+
+                            
+
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <ul>
+                                            @{
+                                                var lst = actionInfo.Keys.ToList().Contains(item.Name) ? actionInfo[item.Name] : null;
+                                                var actionJsons = new List<string>();
+                                                if (currentAccess != null && currentAccess.Actions != null)
+                                                {
+                                                    actionJsons.AddRange(JsonConvert.DeserializeObject<List<string>>(currentAccess.Actions));
+                                                }
+                                            }
+                                            @if (lst != null)
+                                            {
+                                                foreach (var actions in lst)
+                                                {
+                                                    <li>
+
+                                                        <label class="control outlined control-checkbox">
+                                                            @(actions.GetCustomAttribute<ActionRoleAttribute>()?.GetActionName())
+                                                            <input type="checkbox" class="sub_@item.Name checkbox-NotValue" name="vm[@raw].Actions" @(actionJsons.Contains(actions?.Name) ? "checked" : "") value="@actions?.Name" disabled>
+                                                            <div class="control-indicator"></div>
+                                                        </label>
+
+
+                                                    </li>
+                                                }
+                                            }
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+
+                    raw++;
+                }
+
+            </div>
+        </div>
+
+
+        <button type="submit" class="btn btn-success btn-block">Submit</button>
+    </form>
+
+
+    <script>
+        grid = $('.grid').isotope({
+            // options
+            itemSelector: '.grid-item',
+            layoutMode: 'masonry',
+            
+        });
+
+        setTimeout(function () {
+            grid.isotope('layout');
+        }, 10);
+
+        $('.button-menu-mobile').on("click", function () {
+
+            setTimeout(function () {
+                grid.isotope('layout');
+            }, 300);
+        });
+
+    </script>
+    <script>
+
+        $(function () {
+
+
+            $('hr[class^="hr-random"]').each(function () {
+                $(this).css('background-color', '#' + Math.floor(Math.random() * 16777215).toString(16));
+            });
+
+
+
+
+
+            var checkBoxHead = $('.checkboxHead');
+            $.each(checkBoxHead, function (index, key) {
+                var id = $(key).attr("data-role");
+                var inputs = $('.sub_' + id);
+
+                var check = $(key).is(":checked");
+
+                if (check == false) {
+
+                    $.each(inputs, function (index, key) {
+                        $(key).attr("disabled", "disabled")
+                    })
+
+                }
+                else {
+
+                    $.each(inputs, function (index, key) {
+                        $(key).removeAttr("disabled")
+                    })
+                }
+            })
+
+            $('.checkboxHead').on("click", function () {
+                debugger;
+                var id = $(this).attr("data-role");
+                var inputs = $('.sub_' + id);
+
+                var check = $(this).is(":checked");
+
+                if (check == false) {
+
+                    $.each(inputs, function (index, key) {
+                        $(key).attr("disabled", "disabled")
+                    })
+
+                }
+                else {
+
+                    $.each(inputs, function (index, key) {
+                        $(key).removeAttr("disabled")
+                    })
+                }
+            })
+        })
+    </script>
+
+</div>

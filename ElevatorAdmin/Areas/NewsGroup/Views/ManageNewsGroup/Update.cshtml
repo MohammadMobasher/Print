@@ -1,0 +1,26 @@
+﻿@using DataLayer.Entities
+@model NewsGroup
+
+@{
+    ViewData["Title"] = "ویرایش دسته";
+    Layout = null;
+}
+
+
+<form action="/NewsGroup/ManageNewsGroup/Update" class="form-horizontal" method="post" style="">
+
+    <input type="hidden" name="Id" value="@Model.Id"/>
+
+    <div class="form-group">
+        <label for="Title" class="control-label col-sm-12">Title <i class="text-danger fa fa-star size-8"></i></label>
+        <div class="col-sm-12">
+            <input type="text" value="@Model.Title" class="form-control" required="required" name="Title" aria-describedby="Title" placeholder="Title" />
+        </div>
+    </div>
+
+
+
+    <button type="submit" class="btn btn-block btn-success">Submit</button>
+
+
+</form>

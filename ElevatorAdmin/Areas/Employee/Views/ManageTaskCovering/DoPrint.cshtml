@@ -1,0 +1,57 @@
+﻿@using DataLayer.Entities
+@model SubProject
+
+@{
+    ViewData["Title"] = "DoPrint";
+    Layout = "~/Views/Shared/_ModalLayout.cshtml";
+}
+
+
+<form action="/Employee/ManageTaskCovering/DoPrint" class="form-horizontal" method="post" style="">
+
+    <input type="hidden" name="Number" value="@Model.Number" />
+    <input type="hidden" name="subProjectId" value="@Model.Id" />
+    <input type="hidden" name="NumOfCovering" value="@Model.NumOfCovering" />
+
+    <table class="table table-responsive rounded table-hover table-bordered">
+
+        <tr>
+            <td>Whole Number</td>
+            <td>@Model.Number</td>
+        </tr>
+
+        <tr>
+            <td>Number of done</td>
+            <td>@Model.NumOfCovering</td>
+        </tr>
+
+    </table>
+
+    <div class="form-group mt-2">
+        <label for="Number" class="control-label col-sm-12">Number <i class="text-danger fa fa-star size-8"></i></label>
+        <div class="col-sm-12">
+            <input type="Number" class="form-control" required="required" name="numberOfDo" aria-describedby="numberOfDo" placeholder="numberOfDo" />
+        </div>
+    </div>
+
+
+
+    <button type="submit" class="btn btn-block btn-success">Submit</button>
+
+    <script>
+        $(function () {
+            $('[name="numberOfDo"]').on("keyup", function(){
+                var WholeNumber = $('[name="Number"]').val();
+                var NumOfCovering = $('[name="NumOfCovering"]').val();
+
+                if ($(this).val() > WholeNumber - NumOfCovering){
+                    $(this).val("");
+                }
+
+            });
+        });
+    </script>
+
+</form>
+
+

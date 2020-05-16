@@ -1,0 +1,96 @@
+﻿@using DataLayer.Entities
+
+@model List<SubProject>
+
+@{
+    ViewData["Title"] = "ProjevtSummery";
+    Layout = "~/Views/Shared/_ModalLayout.cshtml";
+}
+<style>
+    fieldset.scheduler-border {
+        border: 2.5px groove #ddd !important;
+        padding: 0 1.4em 1.4em 1.4em !important;
+        margin: 0 0 1.5em 0 !important;
+        -webkit-box-shadow: 0px 0px 0px 0px #000;
+        box-shadow: 0px 0px 0px 0px #000;
+    }
+
+    legend.scheduler-border {
+        width: inherit; /* Or auto */
+        padding: 0 10px; /* To give a bit of padding on the left and right */
+        border-bottom: none;
+    }
+
+    td:nth-child(odd) {
+        color: #000;
+        font-weight: 500;
+    }
+</style>
+
+
+@foreach (SubProject item in Model)
+{
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border"> @item.Title </legend>
+    <table class="table table-responsive rounded table-hover table-bordered">
+        <tr>
+            <td>Type</td>
+            <td>@item.SubProjectType</td>
+            <td>Number</td>
+            <td>@item.Number</td>
+            <td>Color</td>
+            <td>@item.Color</td>
+            <td>Suggested Time</td>
+            <td>@item.SuggestedTime.ToShortDateString()</td>
+            <td>File</td>
+            <td><a href="/@item.BookOrSeet" target="_blank">File</a></td>
+        </tr>
+        <tr>
+            <td>Size</td>
+            <td>@item.Size</td>
+            <td>Width</td>
+            <td>@(item.Width == null ? "---" : item.Width.ToString())</td>
+            <td>Height</td>
+            <td>@(item.Height == null ? "---" : item.Height.ToString())</td>
+            <td>Paper Material</td>
+            <td>@item.PaperMaterial</td>
+            <td>Priority</td>
+            <td>@item.Priority</td>
+        </tr>
+        @if (item.SubProjectType == DataLayer.SSOT.ProjectTypeSSOT.Book)
+        {
+            <tr>
+                <td>Binding Type</td>
+                <td>@item.BindingType</td>
+                <td>Binding Num</td>
+                <td>@item.BindingNumber</td>
+                <td>Cover Color</td>
+                <td>@item.BookCoverColor</td>
+                <td>Cover Material</td>
+                <td>@item.BookCoverMaterial</td>
+            </tr>
+        }
+    </table>
+
+    <table class="table table-responsive rounded table-hover table-bordered">
+        <thead>
+            <tr>
+                <th>Print</th>
+                <th>Bind</th>
+                <th>Cover</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+
+                </td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+
+</fieldset>
+}
+
