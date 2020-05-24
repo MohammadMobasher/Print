@@ -12,6 +12,6 @@ namespace DataLayer.ViewModels.Keyword
 
         public KeywordTypeSSOT Type { get; set; }
 
-        public bool IsActive { get; set; }
+        public bool IsActive { get; set; } = true;
     }
 }

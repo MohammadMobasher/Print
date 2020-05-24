@@ -31,7 +31,7 @@
             <div class="form-group">
                 <label for="Color" class="control-label col-sm-12">Color <i class="text-danger fa fa-star size-8"></i></label>
                 <div class="col-sm-12">
-                    <select name="Color" asp-for="@Model.Color"  required="required" class="form-control form-control-lg">
+                    <select name="Color" asp-for="@Model.Color" required="required" class="form-control form-control-lg">
                         <option value="">Please Choose...</option>
                         @foreach (var item in keywords.Where(a => a.Type == DataLayer.SSOT.KeywordTypeSSOT.Color))
                         {
@@ -78,6 +78,54 @@
                         <option value="">Please Choose...</option>
                     </select>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="form-group">
+                <label for="Works" class="control-label col-sm-12">Works <i class="text-danger fa fa-star size-8"></i></label>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-2">
+                            <label class="control outlined control-checkbox">
+                                Print
+                                <input type="checkbox" name="HasPrint" value="@(Model.HasPrint ? "true" : "false")" />
+                                <div class="control-indicator"></div>
+                            </label>
+                        </div>
+                        <div class="col-2">
+                            <label class="control outlined control-checkbox">
+                                Binding
+                                <input type="checkbox" name="HasBinding" value="@(Model.HasBinding ? "true" : "false")" />
+                                <div class="control-indicator"></div>
+                            </label>
+                        </div>
+                        <div class="col-2">
+                            <label class="control outlined control-checkbox">
+                                Cover
+                                <input type="checkbox" name="HasCover" value="@(Model.HasCover ? "true" : "false")" />
+                                <div class="control-indicator"></div>
+                            </label>
+                        </div>
+                        <div class="col-2">
+                            <label class="control outlined control-checkbox">
+                                Cut
+                                <input type="checkbox" name="HasCut" value="@(Model.HasCut ? "true" : "false")" />
+                                <div class="control-indicator"></div>
+                            </label>
+                        </div>
+                        <div class="col-2">
+                            <label class="control outlined control-checkbox">
+                                Deliver
+                                <input type="checkbox" name="HasDeliver" value="@(Model.HasDeliver ? "true" : "false")" />
+                                <div class="control-indicator"></div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

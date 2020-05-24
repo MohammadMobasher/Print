@@ -105,5 +105,16 @@ namespace DataLayer.ViewModels.ProjectAndSubProject.SubProjectViewModel
         public int OrganizationId { get; set; }
 
 
+        #region خدمات کلی که این شرکت ارائه میدهد
+
+        public bool HasPrint { get; set; }
+        public bool HasCover { get; set; }
+        public bool HasCut { get; set; }
+        public bool HasDeliver { get; set; }
+        public bool HasBinding { get; set; }
+
+        #endregion
+
+
     }
 }

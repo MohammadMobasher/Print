@@ -51,7 +51,7 @@
                 <td>Number</td>
                 <td>@Model.Number</td>
                 <td>Color</td>
-                <td>@(Model.Color == DataLayer.SSOT.ColorSSOT.Colorfull ? "Colorfull" : "BlackAndWhite")</td>
+                @*<td>@(Model.Color == DataLayer.SSOT.ColorSSOT.Colorfull ? "Colorfull" : "BlackAndWhite")</td>*@
             </tr>
             <tr>
                 <td>Priority</td>
@@ -156,7 +156,7 @@
                 <tr>
                     <td>Binding Type</td>
                     <td>@Model.BindingType</td>
-                    @if (@Model.BindingType == DataLayer.SSOT.BindingSSOT.Stapler)
+                    @*@if (@Model.BindingType == DataLayer.SSOT.BindingSSOT.Stapler)*@
                     {
                         <td>Binding Number</td>
                         <td>@Model.BindingNumber</td>
