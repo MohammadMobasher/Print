@@ -48,18 +48,18 @@ namespace DataLayer.DTO.BIll
 
         public ProjectTypeSSOT SubProjectType { get; set; }
 
-        public ColorSSOT? Color { get; set; }
+        public int? Color { get; set; }
 
 
         public int Number { get; set; }
-        public SizeSSOT? Size { get; set; }
+        public int? Size { get; set; }
         public int? Height { get; set; }
         public int? Width { get; set; }
         public PaperMaterialSSOT PaperMaterial { get; set; }
-        public BindingSSOT? BindingType { get; set; }
-        public BindingSSOT? BindingNumber { get; set; }
-        public ColorSSOT? BookCoverColor { get; set; }
-        public BookCoverMaterialSSOT? BookCoverMaterial { get; set; }
+        public int? BindingType { get; set; }
+        public int? BindingNumber { get; set; }
+        public int? BookCoverColor { get; set; }
+        public int? BookCoverMaterial { get; set; }
         public PrioritySSOT Priority { get; set; }
 
         #endregion

@@ -405,12 +405,12 @@ namespace Service.Repos.ProjectAndSubProject
                     model.BookCover = null;
                 }
 
-
-                if (model.Size != DataLayer.SSOT.SizeSSOT.Cutsom)
-                {
-                    model.Width = null;
-                    model.Height = null;
-                }
+                //// TODO
+                //if (model.Size != DataLayer.SSOT.SizeSSOT.Cutsom)
+                //{
+                //    model.Width = null;
+                //    model.Height = null;
+                //}
 
                 Entities.Update(entity);
                 await DbContext.SaveChangesAsync();

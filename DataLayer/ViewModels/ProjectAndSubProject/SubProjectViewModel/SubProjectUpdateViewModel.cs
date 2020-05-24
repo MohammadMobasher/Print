@@ -40,7 +40,7 @@ namespace DataLayer.ViewModels.ProjectAndSubProject.SubProjectViewModel
         /// سایز 
         /// این آیتم برای زمانی استفاده می شود که چاپ بر اساس یک تک صفحه ایی باشد
         /// </summary>
-        public SizeSSOT? Size { get; set; }
+        public int? Size { get; set; }
 
         /// <summary>
         /// درصورتی که به صورت کاستوم انتخاب شده باشد 
@@ -58,7 +58,7 @@ namespace DataLayer.ViewModels.ProjectAndSubProject.SubProjectViewModel
         /// <summary>
         /// نوع رنگ
         /// </summary>
-        public ColorSSOT? Color { get; set; }
+        public int? Color { get; set; }
 
         /// <summary>
         /// نوع کاغذی که باید روی آن چاپ بشود
@@ -69,13 +69,13 @@ namespace DataLayer.ViewModels.ProjectAndSubProject.SubProjectViewModel
         /// <summary>
         /// نوع چسب
         /// </summary>
-        public BindingSSOT? BindingType { get; set; }
+        public int? BindingType { get; set; }
 
         /// <summary>
         /// تعداد منگه
         /// درصورتی این فیلد پر میشود که منگنه انتخاب شده باشد
         /// </summary>
-        public BindingSSOT? BindingNumber { get; set; }
+        public int? BindingNumber { get; set; }
 
 
         /// <summary>
@@ -93,8 +93,8 @@ namespace DataLayer.ViewModels.ProjectAndSubProject.SubProjectViewModel
         public IFormFile BookOrSeetAddress { get; set; }
 
 
-        public ColorSSOT? BookCoverColor { get; set; }
-        public BookCoverMaterialSSOT? BookCoverMaterial { get; set; }
+        public int? BookCoverColor { get; set; }
+        public int? BookCoverMaterial { get; set; }
 
         /// <summary>
         /// اولویت این زیر پروژه
@@ -106,7 +106,6 @@ namespace DataLayer.ViewModels.ProjectAndSubProject.SubProjectViewModel
         /// شماره سازمان مورد نظر
         /// </summary>
         public int OrganizationId { get; set; }
-
 
     }
 }
