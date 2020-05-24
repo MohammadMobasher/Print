@@ -44,7 +44,8 @@ namespace Service
 
         #endregion
 
-        
+        public DbSet<SubProjectDetails> SubProjectDetails { get; set; }
+        public DbSet<Printer> Printer { get; set; }
         public DbSet<SlideShow> SlideShow { get; set; }
         public DbSet<Keywords> Keywords { get; set; }
 
